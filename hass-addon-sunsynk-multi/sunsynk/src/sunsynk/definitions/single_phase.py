@@ -180,7 +180,7 @@ SENSORS += (
         235, "Generator input", "", options={0: "Disable", 1: "Output", 2: "Input"}
     ),
 
-    SwitchRWSensor(195, "SmartLoad Enable Status", on=1),
+    SwitchRWSensor(195, "SmartLoad Enable Status", bitmask=0x01, on=1),
     Sensor(312, "Battery charging voltage", VOLT, 0.01),
     Sensor(603, "Bat1 SOC", "%"),
     Sensor(611, "Bat1 Cycle"),

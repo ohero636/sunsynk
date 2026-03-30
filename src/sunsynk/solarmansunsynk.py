@@ -85,8 +85,8 @@ class SolarmanSunsynk(Sunsynk):
             client = await self.connected_client()
             _LOG.debug("DBG: write_register: %s ==> ...", [value])
             async with asyncio.timeout(self.timeout):
-                res = await client.write_holding_register(
-                    register_addr=address, value=value
+                res = await client.write_multiple_holding_registers(
+                    register_addr=address, values=[value]
                 )
             _LOG.debug("DBG: write_register: %s ==> %s", [value], res)
             return True
