@@ -179,8 +179,7 @@ SENSORS += (
     SelectRWSensor(
         235, "Generator input", "", options={0: "Disable", 1: "Output", 2: "Input"}
     ),
-    NumberRWSensor(134, "Generator Off SOC", "%"),
-    NumberRWSensor(136, "Generator On SOC", "%"),
+
     SwitchRWSensor(195, "SmartLoad Enable Status", on=1),
     Sensor(312, "Battery charging voltage", VOLT, 0.01),
     Sensor(603, "Bat1 SOC", "%"),

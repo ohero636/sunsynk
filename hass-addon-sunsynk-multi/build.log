@@ -1,0 +1,88 @@
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 547B done
+#1 WARN: InvalidDefaultArgInFrom: Default value for ARG ${BUILD_FROM} results in empty or invalid base image name (line 2)
+#1 DONE 0.0s
+
+#2 [internal] load metadata for ghcr.io/home-assistant/amd64-base-python:3.13-alpine3.22
+#2 DONE 0.5s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/5] FROM ghcr.io/home-assistant/amd64-base-python:3.13-alpine3.22@sha256:98d0691188dd2cbe1ecacdd934a121aa28f1d901589f34663f1a277ffe36c099
+#4 DONE 0.0s
+
+#5 [internal] load build context
+#5 transferring context: 5.06kB done
+#5 DONE 0.0s
+
+#6 [2/5] COPY sunsynk sunsynk
+#6 CACHED
+
+#7 [3/5] RUN set -x     && curl -LsSf https://astral.sh/uv/0.9.5/install.sh | sh     && uv venv     && uv pip install --index-strategy unsafe-best-match         ./sunsynk[umodbus,solarman]
+#7 0.146 + curl -LsSf https://astral.sh/uv/0.9.5/install.sh
+#7 0.146 + sh
+#7 0.792 downloading uv 0.9.5 x86_64-unknown-linux-musl-static
+#7 2.189 no checksums to verify
+#7 2.590 installing to /root/.local/bin
+#7 2.593   uv
+#7 2.594   uvx
+#7 2.594 everything's installed!
+#7 2.602 
+#7 2.602 To add $HOME/.local/bin to your PATH, either restart your shell or run:
+#7 2.602 
+#7 2.602     source $HOME/.local/bin/env (sh, bash, zsh)
+#7 2.602     source $HOME/.local/bin/env.fish (fish)
+#7 2.603 WARN: The following commands are shadowed by other commands in your PATH: uv uvx
+#7 2.606 + uv venv
+#7 2.651 Using CPython 3.13.12 interpreter at: /usr/local/bin/python
+#7 2.651 Creating virtual environment at: .venv
+#7 2.652 Activate with: source .venv/bin/activate
+#7 2.653 + uv pip install --index-strategy unsafe-best-match './sunsynk[umodbus,solarman]'
+#7 3.816 Resolved 27 packages in 1.12s
+#7 3.825    Building sunsynk @ file:///sunsynk
+#7 3.992 Downloading aiohttp (1.7MiB)
+#7 4.090  Downloading aiohttp
+#7 4.251   × Failed to build `sunsynk @ file:///sunsynk`
+#7 4.251   ├─▶ The build backend returned an error
+#7 4.251   ╰─▶ Call to `uv_build.build_wheel` failed (exit status: 1)
+#7 4.251 
+#7 4.251       [stderr]
+#7 4.251       Error: Invalid project metadata
+#7 4.251 
+#7 4.251       Caused by:
+#7 4.251           `project.license-files` glob `LICENSE` did not match any files
+#7 4.251 
+#7 4.251       hint: This usually indicates a problem with the package or the build
+#7 4.251       environment.
+#7 ERROR: process "/bin/bash -o pipefail -c set -x     && curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh     && uv venv     && uv pip install --index-strategy unsafe-best-match         ./sunsynk[umodbus,solarman]" did not complete successfully: exit code: 1
+------
+ > [3/5] RUN set -x     && curl -LsSf https://astral.sh/uv/0.9.5/install.sh | sh     && uv venv     && uv pip install --index-strategy unsafe-best-match         ./sunsynk[umodbus,solarman]:
+4.251   ╰─▶ Call to `uv_build.build_wheel` failed (exit status: 1)
+4.251 
+4.251       [stderr]
+4.251       Error: Invalid project metadata
+4.251 
+4.251       Caused by:
+4.251           `project.license-files` glob `LICENSE` did not match any files
+4.251 
+4.251       hint: This usually indicates a problem with the package or the build
+4.251       environment.
+------
+
+ [33m1 warning found (use docker --debug to expand):
+[0m - InvalidDefaultArgInFrom: Default value for ARG ${BUILD_FROM} results in empty or invalid base image name (line 2)
+Dockerfile:15
+--------------------
+  14 |     SHELL ["/bin/bash", "-o", "pipefail", "-c"]
+  15 | >>> RUN set -x \
+  16 | >>>     && curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh \
+  17 | >>>     && uv venv \
+  18 | >>>     && uv pip install --index-strategy unsafe-best-match \
+  19 | >>>         ./sunsynk[umodbus,solarman]
+  20 |     
+--------------------
+ERROR: failed to build: failed to solve: process "/bin/bash -o pipefail -c set -x     && curl -LsSf https://astral.sh/uv/${UV_VERSION}/install.sh | sh     && uv venv     && uv pip install --index-strategy unsafe-best-match         ./sunsynk[umodbus,solarman]" did not complete successfully: exit code: 1
